@@ -1516,6 +1516,7 @@ class Server{
 			$this->config = new Config($this->dataPath . "pocketmine.yml", Config::YAML, []);
 
 			$this->logger->info("Loading server properties...");
+			$this->logger->info("Don't forget to disable Gamakcz Message!");
 			$this->properties = new Config($this->dataPath . "server.properties", Config::PROPERTIES, [
 				"motd" => \pocketmine\NAME . " Server",
 				"server-port" => 19132,
@@ -1538,7 +1539,8 @@ class Server{
 				"auto-save" => true,
 				"view-distance" => 8,
 				"xbox-auth" => true,
-				"language" => "eng"
+				"language" => "eng",
+				"vixik-bruh" => true
 			]);
 
 			define('pocketmine\DEBUG', (int) $this->getProperty("debug.level", 1));
