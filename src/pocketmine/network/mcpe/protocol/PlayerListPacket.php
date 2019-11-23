@@ -63,8 +63,8 @@ public const TYPE_ADD = 0;
 
                 if($this->protocol <= ProtocolInfo::PROTOCOL_1_12) {
                     $this->putString($entry->skin->getSkinId());
-                    $this->putString($entry->skin->getSkinData()->data); // base64_encode($entry->skin->getSkinData()->data)
-                    $this->putString($entry->skin->getCapeData()->data); // base64_encode($entry->skin->getCapeData()->data)
+                    $this->putString($entry->skin->getSkinData()->data);
+                    $this->putString($entry->skin->getCapeData()->data);
                     $this->putString($entry->skin->getSkinResourcePatch());
                     $this->putString($entry->skin->getGeometryData());
                 }

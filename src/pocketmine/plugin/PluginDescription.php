@@ -219,7 +219,7 @@ class PluginDescription{
 					continue;
 				}
 				if($constr === ""){
-					throw new PluginException("One of the extension version constraints of $name is empty. Consider quoting the version string in plugina.yml");
+					throw new PluginException("One of the extension version constraints of $name is empty. Consider quoting the version string in plugin.yml");
 				}
 				foreach(["<=", "le", "<>", "!=", "ne", "<", "lt", "==", "=", "eq", ">=", "ge", ">", "gt"] as $comparator){
 					// warning: the > character should be quoted in YAML
