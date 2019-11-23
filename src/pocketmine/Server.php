@@ -1516,7 +1516,6 @@ class Server{
 			$this->config = new Config($this->dataPath . "pocketmine.yml", Config::YAML, []);
 
 			$this->logger->info("Loading server properties...");
-			$this->logger->info("Don't forget to disable Gamakcz Message!");
 			$this->properties = new Config($this->dataPath . "server.properties", Config::PROPERTIES, [
 				"motd" => \pocketmine\NAME . " Server",
 				"server-port" => 19132,
@@ -1539,8 +1538,7 @@ class Server{
 				"auto-save" => true,
 				"view-distance" => 8,
 				"xbox-auth" => true,
-				"language" => "eng",
-				"vixik-bruh" => true
+				"language" => "eng"
 			]);
 
 			define('pocketmine\DEBUG', (int) $this->getProperty("debug.level", 1));
@@ -1913,8 +1911,9 @@ class Server{
      * @param bool       $addProtocol
 	 */
 	public function broadcastPacket(array $players, DataPacket $packet, bool $addProtocol = false){
-		$packet->encode();
-		$this->batchPackets($players, [$packet], false, $addProtocol);
+	    if(!$addProtocol)
+		    $packet->encode();
+		$this->batchPackets($players, [$packet], false, false, $addProtocol);
 	}
 
 	/**
@@ -1928,20 +1927,21 @@ class Server{
 	 */
 	public function batchPackets(array $players, array $packets, bool $forceSync = false, bool $immediate = false, bool $addProtocol = false) {
         if ($addProtocol) {
-            foreach (ProtocolInfo::SUPPORTED_PROTOCOLS as $protocol) {
-                $closure = function (array $players, int $protocol): array {
-                    $targets = array_filter($players, function (Player $player): bool {
-                        return $player->isConnected();
-                    });
-                    $return = [];
-                    /** @var Player $player */
-                    foreach ($targets as $player) {
-                        if ($player->getProtocol() == $protocol) {
-                            $return[] = $player;
-                        }
+            $closure = function (array $players, int $protocol): array {
+                $targets = array_filter($players, function (Player $player): bool {
+                    return $player->isConnected();
+                });
+                $return = [];
+                /** @var Player $player */
+                foreach ($targets as $player) {
+                    if ($player->getProtocol() == $protocol) {
+                        $return[] = $player;
                     }
-                    return $return;
-                };
+                }
+                return $return;
+            };
+
+            foreach (ProtocolInfo::SUPPORTED_PROTOCOLS as $protocol) {
                 $targets = $closure($players, $protocol);
                 if (!empty($targets)) {
                     $pk = new BatchPacket();
@@ -2426,8 +2426,8 @@ class Server{
 		$pk->type = PlayerListPacket::TYPE_ADD;
 
 		$pk->entries[] = PlayerListEntry::createAdditionEntry($uuid, $entityId, $name, $skin, $xboxUserId);
-
 		$this->broadcastPacket($players ?? $this->playerList, $pk, true);
+
 	}
 
 	/**

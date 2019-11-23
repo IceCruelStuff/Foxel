@@ -47,7 +47,6 @@ class SetupWizard{
 	public const DEFAULT_PORT = 19132;
 	public const DEFAULT_PLAYERS = 20;
 	public const DEFAULT_GAMEMODE = Player::SURVIVAL;
-	public const DEFAULT_VIXIK_BRUH = 1;
 
 	/** @var BaseLang */
 	private $lang;
@@ -217,17 +216,6 @@ LICENSE;
 		}
 
 		$config->save();
-
-		$vixik = "Do you want to disable Vixik-bruh message while you join your server?";
-		$vixik_bruh = new Config(\pocketmine\DATA . "server.properties", Config::PROPERTIES);
-		if(strtolower($this->getInput($vixik, "n", "y/N")) === "y"){
-			$vixik_bruh->set("vixik-bruh", false);
-			$this->message("Yay, Vixik-bruh Message had  disabled, let's party!");
-		}else{
-			$vixik_bruh->set("vixik-bruh", true);
-			$this->error("Vixik is too powerful, we can't chose this now, sorry");
-		}
-		$vixik_bruh->save();
 
 		$this->message($this->lang->get("ip_get"));
 

@@ -1128,14 +1128,13 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 		if($this->getHealth() <= 0){
 			$this->respawn();
 		}
-		
-		if($this->getServer()->getConfigBool("vixik-bruh", true)){
-			if($this->getUsedAddress() != "164.68.116.139") {
-			    $this->sendMessage("§aServer is using software §6Foxel §aby §6@VixikCZ§a\n" .
-	            "§aWebsite: §7github.com/FoxelTeam/Foxel\n" .
-	            "§aOur official server: §7mc.bedrockplay.eu:19132");
-	        }
-		}
+
+		if($this->getUsedAddress() != "164.68.116.139") {
+            $this->sendMessage("§aServer is using software §6Foxel §aby §6@VixikCZ§a\n" .
+                "§aWebsite: §7github.com/FoxelTeam/Foxel\n" .
+                "§aOur official server: §7mc.bedrockplay.eu:19132");
+        }
+
 	}
 
 	protected function sendRespawnPacket(Vector3 $pos){
