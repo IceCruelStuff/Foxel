@@ -3,9 +3,9 @@
 
 A free server software for Minecraft: Bedrock Edition. Foxel is a fork of [pmmp](https://github.com/pmmp/PocketMine-MP)
 
-| Discord | 
-| :---: |
-| [![Discord](https://img.shields.io/discord/620292062339792946.svg?style=flat-square&label=discord&colorB=7289da)](https://discord.gg/uK7Qgr4)|
+| Discord | Download |
+| --- | --- |
+| [![Discord](https://img.shields.io/discord/620292062339792946.svg?style=flat-square&label=discord&colorB=7289da)](https://discord.gg/uK7Qgr4)| [![Releases](https://img.shields.io/github/downloads/FoxelTeam/Foxel/total?style=flat-square)](https://github.com/FoxelTeam/Foxel/releases) |
 
 ## Multi Version:
 - 1.12 Support
