@@ -9,11 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        dirs
         wget https://jenkins.pmmp.io/job/PHP-7.3-Aggregate/lastSuccessfulBuild/artifact/PHP-7.3-Linux-x86_64.tar.gz
         tar -xzf PHP-7.3-Linux-x86_64.tar.gz
         wget https://getcomposer.org/download/1.9.1/composer.phar
@@ -21,11 +18,6 @@ jobs:
         wget https://raw.githubusercontent.com/pmmp/DevTools/master/src/DevTools/ConsoleScript.php
         mkdir build
         bin/php7/bin/php -dphar.readonly=0 ConsoleScript.php --make src,vendor --relative "" --entry "src/pocketmine/PocketMine.php" --out build/Foxel_1.0.0.phar
-        dir
-        dirs
-        cd build
-        dir
-        dirs
     - name: Archive production artifacts
       uses: actions/upload-artifact@v1
       with:
