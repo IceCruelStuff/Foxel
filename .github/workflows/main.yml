@@ -18,14 +18,11 @@ jobs:
         tar -xzf PHP-7.3-Linux-x86_64.tar.gz
         wget https://getcomposer.org/download/1.9.1/composer.phar
         bin/php7/bin/php composer.phar install
-        mkdir plugins
-        cd plugins
-        wget https://poggit.pmmp.io/r/68109/PocketMine-DevTools.phar
-        cd ~/work/Foxel/Foxel
-        chmod 777 ./start.sh
-        ./start.sh
-        eng
-        y
-        y
-        makeserver
-        stop
+        wget https://raw.githubusercontent.com/pmmp/DevTools/master/src/DevTools/ConsoleScript.php
+        mkdir build
+        bin/php7/bin/php -dphar.readonly=0 ConsoleScript.php --src,vendor --relative path/to/PocketMine-MP --entry src/pocketmine/PocketMine.php --out build/Foxel_1.0.0.phar
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v1
+      with:
+        name: artifacts
+        path: build
