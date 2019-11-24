@@ -20,7 +20,7 @@ jobs:
         bin/php7/bin/php composer.phar install
         wget https://raw.githubusercontent.com/pmmp/DevTools/master/src/DevTools/ConsoleScript.php
         mkdir build
-        bin/php7/bin/php -dphar.readonly=0 ConsoleScript.php --src,vendor --relative path/to/PocketMine-MP --entry src/pocketmine/PocketMine.php --out build/Foxel_1.0.0.phar
+        bin/php7/bin/php -dphar.readonly=0 ConsoleScript.php --make src,vendor --relative "" --entry "src/pocketmine/PocketMine.php" --out build/Foxel_1.0.0.phar
         dir
         dirs
         cd build
