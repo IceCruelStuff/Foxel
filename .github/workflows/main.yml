@@ -22,6 +22,7 @@ jobs:
         cd plugins
         wget https://poggit.pmmp.io/r/68109/PocketMine-DevTools.phar
         cd ~/work/Foxel/Foxel
+        chmod 777 ./start.sh
         ./start.sh
         eng
         y
