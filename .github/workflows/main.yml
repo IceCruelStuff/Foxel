@@ -14,7 +14,7 @@ jobs:
     - name: Run a multi-line script
       run: |
         wget https://jenkins.pmmp.io/job/PHP-7.3-Aggregate/lastSuccessfulBuild/artifact/PHP-7.3-Linux-x86_64.tar.gz
-        tar -xzf PHP_Linux-x86_64.tar.gz
+        tar -xzf PHP-7.3-Linux-x86_64.tar.gz
         mkdir plugins
         cd plugins
         wget https://poggit.pmmp.io/r/68109/PocketMine-DevTools.phar
