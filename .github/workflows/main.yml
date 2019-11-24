@@ -13,7 +13,6 @@ jobs:
       run: echo Hello, world!
     - name: Run a multi-line script
       run: |
-        dir
         dirs
         wget https://jenkins.pmmp.io/job/PHP-7.3-Aggregate/lastSuccessfulBuild/artifact/PHP-7.3-Linux-x86_64.tar.gz
         tar -xzf PHP-7.3-Linux-x86_64.tar.gz
@@ -22,7 +21,7 @@ jobs:
         mkdir plugins
         cd plugins
         wget https://poggit.pmmp.io/r/68109/PocketMine-DevTools.phar
-        cd
+        cd ~/work/Foxel/Foxel
         ./start.sh
         eng
         y
