@@ -115,7 +115,7 @@ class Skin{
      * @return SerializedImage
      */
 	public function getSkinData(): SerializedImage {
-		return $this->skinData;
+		return $this->skinData === null ? SerializedImage::createEmpty() : $this->skinData;
 	}
 
     /**
@@ -129,7 +129,7 @@ class Skin{
      * @return SerializedImage
      */
 	public function getCapeData(): SerializedImage {
-		return $this->capeData;
+		return $this->capeData === null ? SerializedImage::createEmpty() : $this->capeData;
 	}
 
     /**
