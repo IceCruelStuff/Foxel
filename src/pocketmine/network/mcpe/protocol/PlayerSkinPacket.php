@@ -65,7 +65,7 @@ class PlayerSkinPacket extends DataPacket{
 	protected function encodePayload(){
 		$this->putUUID($this->uuid);
 		if($this->protocol >= ProtocolInfo::PROTOCOL_1_13) {
-            $this->putSkin($this->skin); // 1.13
+            $this->putSkin($this->skin); // 1.13+
         }
 		else {
 		    $this->putString($this->skin->getSkinId());
@@ -74,11 +74,27 @@ class PlayerSkinPacket extends DataPacket{
 		    $this->putString($this->skin->getSkinData()->data);
 		    $this->putString($this->skin->getCapeData()->data);
 		    $this->putString($this->skin->getSkinResourcePatch());
-		    $this->putString($this->skin->getGeometryData());
+		    $this->putString($this->prepareGeometryDataForOld($this->skin->getGeometryData()));
         }
 	}
 
 	public function handle(NetworkSession $session) : bool{
 		return $session->handlePlayerSkin($this);
 	}
+
+    /**
+     * Source: Steafast2
+     *
+     * @param $skinGeometryData
+     * @return false|string
+     */
+    private function prepareGeometryDataForOld($skinGeometryData) {
+        if (!empty($skinGeometryData)) {
+            if (($tempData = @json_decode($skinGeometryData, true))) {
+                unset($tempData["format_version"]);
+                return json_encode($tempData);
+            }
+        }
+        return $skinGeometryData;
+    }
 }
