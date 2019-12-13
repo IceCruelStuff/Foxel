@@ -49,15 +49,14 @@ class PlayerSkinPacket extends DataPacket{
         }
 		else {
 		    $skin = new Skin();
-		    $skin->setSkinId($this->getString());
 
+		    $skin->setSkinId($this->getString());
 		    $this->oldSkinName = $this->getString();
 		    $this->newSkinName = $this->getString();
-
 		    $skin->setSkinData(SerializedImage::fromLegacy($this->getString()));
 		    $skin->setCapeData(SerializedImage::fromLegacy($this->getString()));
-		    $skin->setSkinResourcePatch($this->getString());
-		    $skin->setGeometryData($this->getString());
+		    $skin->setSkinResourcePatch(Skin::DEFAULT_SKIN_RESOURCE_PATCH); // $this->>getString(); geometry name
+		    $skin->setGeometryData(""); // $this->getString(); ->geometry data
 		    $this->skin = $skin;
         }
 	}
@@ -68,33 +67,21 @@ class PlayerSkinPacket extends DataPacket{
             $this->putSkin($this->skin); // 1.13+
         }
 		else {
+		    if($this->skin->version > ProtocolInfo::PROTOCOL_1_12) {
+		        $this->skin = Skin::getRandomSkin();
+            }
+
 		    $this->putString($this->skin->getSkinId());
 		    $this->putString($this->oldSkinName);
 		    $this->putString($this->newSkinName);
 		    $this->putString($this->skin->getSkinData()->data);
 		    $this->putString($this->skin->getCapeData()->data);
-		    $this->putString($this->skin->getSkinResourcePatch());
-		    $this->putString($this->prepareGeometryDataForOld($this->skin->getGeometryData()));
+		    $this->putString($this->skin->getSkinGeometryName());
+		    $this->putString(Skin::prepareGeometryDataForOld($this->skin->getGeometryData()));
         }
 	}
 
 	public function handle(NetworkSession $session) : bool{
 		return $session->handlePlayerSkin($this);
 	}
-
-    /**
-     * Source: Steafast2
-     *
-     * @param $skinGeometryData
-     * @return false|string
-     */
-    private function prepareGeometryDataForOld($skinGeometryData) {
-        if (!empty($skinGeometryData)) {
-            if (($tempData = @json_decode($skinGeometryData, true))) {
-                unset($tempData["format_version"]);
-                return json_encode($tempData);
-            }
-        }
-        return $skinGeometryData;
-    }
 }
