@@ -1695,6 +1695,7 @@ class Server{
 			Biome::init();
 			RuntimeBlockMapping::init();
 			BiomeDefinitions::init();
+			Skin::init();
 
 			LevelProviderManager::init();
 			if(extension_loaded("leveldb")){
