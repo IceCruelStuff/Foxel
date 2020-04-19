@@ -31,27 +31,29 @@ interface ProtocolInfo{
     public const PROTOCOL_1_12 = 361;
     public const PROTOCOL_1_13 = 388;
     public const PROTOCOL_1_14 = 389;
+    public const PROTOCOL_1_14_60 = 390;
 
-	/**
-	 * NOTE TO DEVELOPERS
-	 * Do not waste your time or ours submitting pull requests changing game and/or protocol version numbers.
-	 * Pull requests changing game and/or protocol version numbers will be closed.
-	 *
-	 * This file is generated automatically, do not edit it manually.
-	 */
+    /**
+     * NOTE TO DEVELOPERS
+     * Do not waste your time or ours submitting pull requests changing game and/or protocol version numbers.
+     * Pull requests changing game and/or protocol version numbers will be closed.
+     *
+     * This file is generated automatically, do not edit it manually.
+     */
 
-	/**
-	 * Actual Minecraft: PE protocol version
-	 */
-	public const CURRENT_PROTOCOL = self::PROTOCOL_1_14;
+    /**
+     * Actual Minecraft: PE protocol version
+     */
+    public const CURRENT_PROTOCOL = self::PROTOCOL_1_14;
 
     /**
      * Supported protocols by Foxel
      */
-	public const SUPPORTED_PROTOCOLS = [
-	    self::PROTOCOL_1_12, // 1.12
+    public const SUPPORTED_PROTOCOLS = [
+        self::PROTOCOL_1_12, // 1.12
         self::PROTOCOL_1_13, // 1.13
-        self::PROTOCOL_1_14
+        self::PROTOCOL_1_14, // 1.14
+        self::PROTOCOL_1_14_60 // 1.14.60
     ];
 
 	/**
