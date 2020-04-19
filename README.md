@@ -11,6 +11,7 @@ A free server software for Minecraft: Bedrock Edition. Foxel is a fork of [pmmp]
 - 1.12 Support
 - 1.13 Support
 - 1.14 Support
+- 1.14.60 Support
 
 ## Why should you choose Foxel?
 You don't need to use Foxel, that your chose
